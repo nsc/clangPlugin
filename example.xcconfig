@@ -1,0 +1,1 @@
+OTHER_CFLAGS = -Xclang -load -Xclang $HOME/install/example/build/lib/DetectTrailingWhiteSpace.dylib -Xclang -add-plugin -Xclang detect-trailing-ws
