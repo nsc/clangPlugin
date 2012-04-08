@@ -1,0 +1,46 @@
+(
+	{
+		Identifier = "com.flyingmeat.compilers.llvm.tot";
+		BasedOn = "default:com.apple.compilers.llvm.clang.1_0";
+		Type = Compiler;
+		Name = "LLVM TOT";
+		Description = "Clang / LLVM TOT (Tot Hack)";
+		Version = "com.flyingmeat.compilers.llvm.tot";
+		Vendor = "LLVM Folks / Flying Meat hacks.";
+		ExecPath = "/Users/nico/install/llvm/build/bin/clang";
+	},
+	{
+		Identifier = "com.flyingmeat.compilers.llvm.tot.analyzer";
+		Type = Compiler;
+		BasedOn = "com.apple.compilers.llvm.clang.1_0";
+		Name = "Static Analyzer TOT (/opt/)";
+		Description = "Apple Clang Static Analyzer TOT";
+		Architectures = (
+			i386,
+			"x86_64",
+		);
+		ExecPath = "$(CLANG)";
+		RuleName = "Analyze $(InputFile)";
+		OutputDir = "$(TEMP_DIR)/StaticAnalyzer/$(CURRENT_VARIANT)/$(CURRENT_ARCH)";
+		OutputFileExtension = plist;
+		OutputsAreProducts = YES;
+		IsAbstract = YES;
+		"ShowInCompilerSelectionPopup" = NO;
+		SoftError = YES;
+		CommandOutputParser = (
+			(
+				"^([^:]*):([0-9]*):[0-9]*: [^:]*error: (.*)$",
+				"emit-analyzer-warning",
+			),
+		);
+		"CommandResultsPostprocessor" = "XCStaticAnalyzerResultsPostprocessor";
+		SourceFileOption = "--analyze";
+		Options = (
+			{
+				Name = CLANG;
+				Type = Path;
+				DefaultValue = "/Users/nico/install/llvm/build/bin/clang";
+			},
+		);
+	},
+)
