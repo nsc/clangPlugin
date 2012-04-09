@@ -8,11 +8,28 @@
 		Version = "com.savoysoftware.compilers.llvm";
 		Vendor = "LLVM Folks / custom hacks.";
 		ExecPath = "@@CLANG_INSTALL_PATH@@";
-        Properties = (
+        Options = (
             {
-                Name = OTHER_CFLAGS;
-                Type = String;
-                DefaultValue = "-Xclang -load -Xclang @@CLANG_PLUGIN_PATH@@/build/lib/DetectTrailingWhiteSpace.dylib -Xclang -add-plugin -Xclang detect-trailing-ws -Xclang -plugin-arg-detect-trailing-ws -Xclang detect=1";
+                Name = DETECT_WHITESPACE;
+                Type = Boolean;
+                DefaultValue = YES;
+                CommandLineArgs = {
+                    YES = (
+                        "-Xclang",
+                        "-load",
+                        "-Xclang",
+                        "@@CLANG_PLUGIN_PATH@@/build/lib/DetectTrailingWhiteSpace.dylib",
+                        "-Xclang",
+                        "-add-plugin",
+                        "-Xclang",
+                        "detect-trailing-ws",
+                        "-Xclang",
+                        "-plugin-arg-detect-trailing-ws",
+                        "-Xclang", 
+                        "detect=1",
+                    );
+                    NO = ();
+                };
             },
         );
 	},
