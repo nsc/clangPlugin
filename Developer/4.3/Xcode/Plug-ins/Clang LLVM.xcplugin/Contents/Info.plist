@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.flyingmeat.compilers.llvm.tot</string>
+	<string>com.savoysoftware.compilers.llvm</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Clang/LLVM Compiler Xcode Plugin (Tot Hack)</string>
+	<string>Clang/LLVM Compiler Xcode Plugin (custom)</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>

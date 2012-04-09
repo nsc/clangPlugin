@@ -5,7 +5,7 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
 set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 
-set (LLVM_SRC_DIR /Users/nico/install/llvm)
+set (LLVM_SRC_DIR ${CLANG_PLUGIN_DIR}/llvm)
 set (CLANG_SRC_DIR ${LLVM_SRC_DIR}/tools/clang)
 set (LLVM_BUILD_DIR ${LLVM_SRC_DIR}/build)
 set (CLANG_BUILD_DIR ${LLVM_BUILD_DIR}/tools/clang)
@@ -73,6 +73,10 @@ macro(add_clang_plugin name)
 	endforeach()
 
 endmacro(add_clang_plugin)
+
+add_custom_target(XcodeTemplate
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/copyTemplate -DCLANG_INSTALL_PATH=${LLVM_BUILD_DIR}/bin/clang ${CMAKE_SOURCE_DIR}/Developer .
+)
 
 add_subdirectory(detectTrailingWS)
 

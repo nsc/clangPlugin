@@ -1,0 +1,23 @@
+To build the plugin execute:
+
+git submodule init
+git submodule update
+ln -s ../../clang llvm/tools/clang
+
+# build llvm & clang
+cd llvm
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo ..
+make
+cd ../..
+
+# build clangPlugin
+mkdir build
+cd build
+cmake -DCLANG_PLUGIN_DIR=`pwd`/.. ..
+make
+
+# build Xcode Template
+make XcodeTemplate
+rsync -av Developer ~/Library/Application\ Support

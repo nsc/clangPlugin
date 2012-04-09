@@ -1,20 +1,20 @@
 (
 	{
-		Identifier = "com.flyingmeat.compilers.llvm.tot";
+		Identifier = "com.savoysoftware.compilers.llvm";
 		BasedOn = "default:com.apple.compilers.llvm.clang.1_0";
 		Type = Compiler;
-		Name = "LLVM TOT";
-		Description = "Clang / LLVM TOT (Tot Hack)";
-		Version = "com.flyingmeat.compilers.llvm.tot";
-		Vendor = "LLVM Folks / Flying Meat hacks.";
-		ExecPath = "/Users/nico/install/llvm/build/bin/clang";
+		Name = "LLVM (custom)";
+		Description = "Clang / LLVM (custom)";
+		Version = "com.savoysoftware.compilers.llvm";
+		Vendor = "LLVM Folks / custom hacks.";
+		ExecPath = "@@CLANG_INSTALL_PATH@@";
 	},
 	{
-		Identifier = "com.flyingmeat.compilers.llvm.tot.analyzer";
+		Identifier = "com.savoysoftware.compilers.llvm.analyzer";
 		Type = Compiler;
 		BasedOn = "com.apple.compilers.llvm.clang.1_0";
-		Name = "Static Analyzer TOT (/opt/)";
-		Description = "Apple Clang Static Analyzer TOT";
+		Name = "Static Analyzer (custom)";
+		Description = "Apple Clang Static Analyzer (custom)";
 		Architectures = (
 			i386,
 			"x86_64",
@@ -39,7 +39,7 @@
 			{
 				Name = CLANG;
 				Type = Path;
-				DefaultValue = "/Users/nico/install/llvm/build/bin/clang";
+				DefaultValue = "@@CLANG_INSTALL_PATH@@";
 			},
 		);
 	},
