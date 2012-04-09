@@ -1,0 +1,5 @@
+"[COM_SAVOYSOFTWARE_DETECT_WHITESPACE]-name" = "Detect trailing whitespace";
+"[COM_SAVOYSOFTWARE_DETECT_WHITESPACE]-description" = "Detect white space at the end of a line.";
+"[COM_SAVOYSOFTWARE_DETECT_WHITESPACE]-value-[NO]" = "No";
+"[COM_SAVOYSOFTWARE_DETECT_WHITESPACE]-value-[YES]" = "Yes";
+

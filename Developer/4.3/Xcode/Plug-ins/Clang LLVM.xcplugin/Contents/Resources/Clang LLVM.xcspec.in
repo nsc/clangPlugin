@@ -10,7 +10,7 @@
 		ExecPath = "@@CLANG_INSTALL_PATH@@";
         Options = (
             {
-                Name = DETECT_WHITESPACE;
+                Name = COM_SAVOYSOFTWARE_DETECT_WHITESPACE;
                 Type = Boolean;
                 DefaultValue = YES;
                 CommandLineArgs = {
