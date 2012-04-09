@@ -1,13 +1,20 @@
 (
 	{
 		Identifier = "com.savoysoftware.compilers.llvm";
-		BasedOn = "default:com.apple.compilers.llvm.clang.1_0";
+		BasedOn = "default:com.apple.compilers.llvmgcc42";
 		Type = Compiler;
 		Name = "LLVM (custom)";
 		Description = "Clang / LLVM (custom)";
 		Version = "com.savoysoftware.compilers.llvm";
 		Vendor = "LLVM Folks / custom hacks.";
 		ExecPath = "@@CLANG_INSTALL_PATH@@";
+        Properties = (
+            {
+                Name = OTHER_CFLAGS;
+                Type = String;
+                DefaultValue = "-Xclang -load -Xclang @@CLANG_PLUGIN_PATH@@/build/lib/DetectTrailingWhiteSpace.dylib -Xclang -add-plugin -Xclang detect-trailing-ws -Xclang -plugin-arg-detect-trailing-ws -Xclang detect=1";
+            },
+        );
 	},
 	{
 		Identifier = "com.savoysoftware.compilers.llvm.analyzer";

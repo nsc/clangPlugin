@@ -1,5 +1,0 @@
-# pretend we are GCC, since the latest clang release (RELEASE_30) doesn't
-# handle the option -serialze-diagnostics which Xcode 4.3 relies upon
-GCC_VERSION = com.apple.compilers.llvmgcc42
-
-OTHER_CFLAGS = -Xclang -load -Xclang $HOME/install/example/build/lib/DetectTrailingWhiteSpace.dylib -Xclang -add-plugin -Xclang detect-trailing-ws -Xclang -plugin-arg-detect-trailing-ws -Xclang detect=1

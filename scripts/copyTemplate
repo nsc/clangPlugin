@@ -6,7 +6,7 @@ import subprocess
 
 vars = {}
 args = sys.argv[1:]
-for arg in args:
+for arg in args[:]:
     if arg.startswith("-D"):
         key, value = arg.lstrip("-D").split("=", 1)
         vars[key] = value
@@ -17,11 +17,20 @@ for arg in args:
 src = args[0]
 dst = args[1]
 
+logfile = open("/tmp/copyTemplate.log", "w")
+logfile.write("""
+src = %s
+dst = %s
+vars = %s
+""" % (src, dst, vars))
+
 # copy directory
 subprocess.Popen(["/usr/bin/rsync", "-a", src, dst]).wait()
 
 def replaceVars(s, vars):
+    global logfile
     for k, v in vars.iteritems():
+        logfile.write("replace %s with %s\n" % (k, v))
         s = s.replace("@@%s@@" % k, v)
     return s
 
