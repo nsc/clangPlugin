@@ -32,12 +32,12 @@ virtual void HandleTranslationUnit (ASTContext &context)
     {
         if (code[i] == '\n')
         {
-            size_t j=i;
+            int64_t j=i-1;
             bool spaceAtTheEnd = false;
             bool nonWhiteSpaceUnderCursor = false;
-            while (j > 1)
+            while (j >= 0)
             {
-                switch (code[j-1])
+                switch (code[j])
                 {
                     case ' ':
                     case '\t':
@@ -57,8 +57,18 @@ virtual void HandleTranslationUnit (ASTContext &context)
 
             if (spaceAtTheEnd)
             {
-                SourceLocation l = start.getLocWithOffset(j+1);
-                diagnostics.Report(l, whiteSpaceAtEndOfLineWarning);
+				SourceLocation wsStart = start.getLocWithOffset(j+1);
+				SourceLocation wsEnd = start.getLocWithOffset(i);
+				CharSourceRange range;
+				range.setBegin(wsStart);
+				range.setEnd(wsEnd);
+				FixItHint hint = FixItHint::CreateRemoval(range);
+
+                FullSourceLoc l(wsStart, sourceManager);
+                DiagnosticBuilder b = diagnostics.Report(l, whiteSpaceAtEndOfLineWarning);
+				b.AddSourceRange(range);
+				b.AddString("remove trailing whitespace");
+				b.AddFixItHint(hint);
             }
         }
     }

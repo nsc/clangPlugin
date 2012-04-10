@@ -74,8 +74,14 @@ macro(add_clang_plugin name)
 
 endmacro(add_clang_plugin)
 
+
+add_custom_target(CopyARCLibraries
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/copyARCLibraries "${LLVM_BUILD_DIR}"
+)
+
 add_custom_target(XcodeTemplate
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/copyTemplate -DCLANG_INSTALL_PATH=${LLVM_BUILD_DIR}/bin/clang -DCLANG_PLUGIN_PATH=${CLANG_PLUGIN_DIR} ${CMAKE_SOURCE_DIR}/Developer .
+	DEPENDS CopyARCLibraries
 )
 
 add_subdirectory(detectTrailingWS)

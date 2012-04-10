@@ -7,6 +7,7 @@ set (CLANG_LIBS
 	clangBasic
 	clangCodeGen
 	clangDriver
+	clangEdit
 	clangFrontendTool
 	clangIndex
 	clangLex
