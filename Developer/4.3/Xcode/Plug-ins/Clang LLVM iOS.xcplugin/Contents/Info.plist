@@ -5,11 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.savoysoftware.compilers.llvm.clang.1_0.iOS</string>
+	<string>com.savoysoftware.compilers.llvm.clang.ios.1_0</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Clang/LLVM Compiler Xcode Plugin (custom)</string>
+	<string>Clang/LLVM Compiler Xcode Plugin (iOS)</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>

@@ -6,7 +6,7 @@
 
 (
     {
-        Identifier = "com.savoysoftware.compilers.llvm.clang.1_0.osx";
+        Identifier = "com.savoysoftware.compilers.llvm.clang.osx.1_0";
         Type = Compiler;
         Class = "XCCompilerSpecificationClang";
         Name = "Custom LLVM compiler OSX";
@@ -1733,9 +1733,9 @@
     },
     
     {
-        Identifier = "com.savoysoftware.compilers.llvm.clang.1_0.compiler.osx";
+        Identifier = "com.savoysoftware.compilers.llvm.clang.osx.1_0.compiler";
         Type = Compiler;
-        BasedOn = "com.savoysoftware.compilers.llvm.clang.1_0.osx";
+        BasedOn = "com.savoysoftware.compilers.llvm.clang.osx.1_0";
         Name = "Custom LLVM compiler 3.1";
         Description = "Custom LLVM compiler 3.1";
         IsAbstract = YES;
@@ -1762,9 +1762,9 @@
     },
     
     {
-        Identifier = "com.savoysoftware.compilers.llvm.clang.1_0.analyzer";
+        Identifier = "com.savoysoftware.compilers.llvm.clang.osx.1_0.analyzer";
         Type = Compiler;
-        BasedOn = "com.savoysoftware.compilers.llvm.clang.1_0.osx";
+        BasedOn = "com.savoysoftware.compilers.llvm.clang.osx.1_0";
         Name = "Static Analyzer";
         Description = "Apple Clang Static Analyzer 3.0";
         Architectures = (
@@ -1864,9 +1864,9 @@
     },
     
     {
-        Identifier = "com.savoysoftware.compilers.llvm.clang.1_0.astbuilder";
+        Identifier = "com.savoysoftware.compilers.llvm.clang.osx.1_0.astbuilder";
         Type = Compiler;
-        BasedOn = "com.savoysoftware.compilers.llvm.clang.1_0.osx";
+        BasedOn = "com.savoysoftware.compilers.llvm.clang.osx.1_0";
         Name = "AST Builder";
         Description = "Apple Clang AST Builder 1.0";
         FileTypes = (

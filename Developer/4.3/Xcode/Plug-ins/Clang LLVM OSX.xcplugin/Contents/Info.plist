@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.savoysoftware.compilers.llvm.clang.1_0.osx</string>
+	<string>com.savoysoftware.compilers.llvm.clang.osx.1_0</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
