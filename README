@@ -20,4 +20,4 @@ make
 
 # build Xcode Template
 make XcodeTemplate
-rsync -av Developer ~/Library/Application\ Support
+rsync -av Library ~

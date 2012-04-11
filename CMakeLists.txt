@@ -80,7 +80,7 @@ add_custom_target(CopyARCLibraries
 )
 
 add_custom_target(XcodeTemplate
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/copyTemplate -DCLANG_INSTALL_PATH=${LLVM_BUILD_DIR}/bin/clang -DCLANG_PLUGIN_PATH=${CLANG_PLUGIN_DIR} ${CMAKE_SOURCE_DIR}/Developer .
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/copyTemplate -DCLANG_INSTALL_PATH=${LLVM_BUILD_DIR}/bin/clang -DCLANG_PLUGIN_PATH=${CLANG_PLUGIN_DIR} ${CMAKE_SOURCE_DIR}/Library .
 	DEPENDS CopyARCLibraries
 )
 
