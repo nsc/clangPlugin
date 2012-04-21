@@ -21,10 +21,15 @@
 	<key>Targets</key>
 	<array>
 		<dict>
+            <key>Name</key>
+            <string>___PACKAGENAME___</string>
 			<key>ProductType</key>
 			<string>com.apple.product-type.library.dynamic</string>
 			<key>SharedSettings</key>
-			<dict/>
+			<dict>
+                <key>PRODUCT_NAME</key>
+                <string>___PACKAGENAME___</string>
+            </dict>
 			<key>BuildPhases</key>
 			<array>
 				<dict>
@@ -44,6 +49,49 @@
 			<array/>
 			<key>OtherFrameworks</key>
 			<array/>
+            <key>BasedOn</key>
+            <dict>
+                <key>Debug</key>
+                <string>plugin.xcconfig</string>
+                <key>Release</key>
+                <string>plugin.xcconfig</string>
+            </dict>
+
+		</dict>
+		<dict>
+            <key>Name</key>
+            <string>pluginTest</string>
+			<key>ProductType</key>
+			<string>com.apple.product-type.tool</string>
+			<key>SharedSettings</key>
+			<dict>
+                <key>PRODUCT_NAME</key>
+                <string>pluginTest</string>
+            </dict>
+			<key>BuildPhases</key>
+			<array>
+				<dict>
+					<key>Class</key>
+					<string>Sources</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Frameworks</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>CopyFiles</string>
+				</dict>
+			</array>
+			<key>OtherFrameworks</key>
+			<array/>
+            <key>BasedOn</key>
+            <dict>
+                <key>Debug</key>
+                <string>customCompiler.xcconfig</string>
+                <key>Release</key>
+                <string>customCompiler.xcconfig</string>
+            </dict>
 		</dict>
 	</array>
 	<key>Options</key>
@@ -53,20 +101,76 @@
 	<key>Nodes</key>
 	<array>
 		<string>plugin.xcconfig</string>
+		<string>customCompiler.xcconfig</string>
 		<string>___PACKAGENAMEASIDENTIFIER___.cpp</string>
+        <string>main.m:comments</string>
+        <string>main.m:import:importFoundation</string>
+        <string>main.m:main</string>
 	</array>
 	<key>Definitions</key>
 	<dict>
 		<key>plugin.xcconfig</key>
 		<dict>
-			<key>Path</key>
-			<string>plugin.xcconfig</string>
+			<key>Beginning</key>
+			<string>CLANG_PLUGIN_PATH = @@CLANG_PLUGIN_PATH@@
+HEADER_SEARCH_PATHS = ${CLANG_PLUGIN_PATH}/llvm/include ${CLANG_PLUGIN_PATH}/llvm/build/include ${CLANG_PLUGIN_PATH}/clang/include/ ${CLANG_PLUGIN_PATH}/llvm/build/tools/clang/include
+
+GCC_PREPROCESSOR_DEFINITIONS = __STDC_LIMIT_MACROS __STDC_CONSTANT_MACROS $(inherited)
+
+LIBRARY_SEARCH_PATHS = ${CLANG_PLUGIN_PATH}/llvm/build/lib
+
+CLANG_LIBS =  -lclangFrontend -lclangAST -lclangAnalysis -lclangBasic -lclangCodeGen -lclangDriver -lclangEdit -lclangFrontendTool -lclangIndex -lclangLex -lclangParse -lclangRewrite -lclangSema -lclangSerialization -lclangStaticAnalyzerCheckers -lclangStaticAnalyzerCore -lclangStaticAnalyzerFrontend
+
+LLVM_LIBS = -lLLVMJIT -lLLVMX86CodeGen -lLLVMX86AsmParser -lLLVMX86Disassembler -lLLVMExecutionEngine -lLLVMAsmPrinter -lLLVMSelectionDAG -lLLVMX86AsmPrinter -lLLVMX86Info -lLLVMMCParser -lLLVMCodeGen -lLLVMX86Utils -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMCore -lLLVMMC -lLLVMSupport
+
+OTHER_LDFLAGS = ${LLVM_LIBS} ${CLANG_LIBS} -lpthread
+
+OTHER_CPLUSPLUSFLAGS = $(OTHER_CFLAGS) -fPIC -fno-common -Woverloaded-virtual -Wcast-qual -fno-strict-aliasing -pedantic -Wno-long-long -Wall -W -Wno-unused-parameter -Wwrite-strings -fno-exceptions -fno-rtti
+            </string>
 		</dict>
+
+		<key>customCompiler.xcconfig</key>
+		<dict>
+			<key>Beginning</key>
+			<string>CUSTOM_CLANG_PLUGIN_PATH = ${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.dylib
+
+GCC_VERSION = com.savoysoftware.compilers.llvm.clang.osx.1_0
+
+OTHER_CFLAGS = -Xclang -load -Xclang ${CUSTOM_CLANG_PLUGIN_PATH} -Xclang -add-plugin -Xclang ___PACKAGENAMEASIDENTIFIER___ -Xclang -plugin-arg-___PACKAGENAMEASIDENTIFIER___ -Xclang someArgument=1 
+            </string>
+		</dict>
+
 		<key>___PACKAGENAMEASIDENTIFIER___.cpp</key>
 		<dict>
 			<key>Path</key>
 			<string>___PACKAGENAMEASIDENTIFIER___.cpp</string>
+            <key>TargetIndices</key>
+            <array>
+                <integer>0</integer>
+            </array>
 		</dict>
+
+        <key>main.m</key>
+        <dict>
+            <key>Group</key>
+            <string>Test Plugin</string>
+            <key>TargetIndices</key>
+            <array>
+                <integer>1</integer>
+            </array>
+        </dict>
+        <key>main.m:main</key>
+        <dict>
+            <key>Beginning</key>
+            <string>int main(int argc, char *argv[])
+{
+</string>
+            <key>End</key>
+            <string>}</string>
+            <key>Indent</key>
+            <integer>1</integer>
+        </dict>
+
 	</dict>
 	<key>Project</key>
 	<dict>
@@ -86,20 +190,7 @@
 			</dict>
 		</dict>
 		<key>SharedSettings</key>
-		<dict>
-			<key>LLVM_LIBS</key>
-			<string>-lLLVMJIT -lLLVMX86CodeGen -lLLVMX86AsmParser -lLLVMX86Disassembler -lLLVMExecutionEngine -lLLVMAsmPrinter -lLLVMSelectionDAG -lLLVMX86AsmPrinter -lLLVMX86Info -lLLVMMCParser -lLLVMCodeGen -lLLVMX86Utils -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMCore -lLLVMMC -lLLVMSupport</string>
-			<key>CLANG_LIBS</key>
-			<string>-lclangFrontend -lclangAST -lclangAnalysis -lclangBasic -lclangCodeGen -lclangDriver -lclangEdit -lclangFrontendTool -lclangIndex -lclangLex -lclangParse -lclangRewrite -lclangSema -lclangSerialization -lclangStaticAnalyzerCheckers -lclangStaticAnalyzerCore -lclangStaticAnalyzerFrontend</string>
-			<key>LIBRARY_SEARCH_PATHS</key>
-			<string>@@CLANG_PLUGIN_PATH@@/llvm/build/lib</string>
-			<key>OTHER_CPLUSPLUSFLAGS</key>
-			<string>$(OTHER_CFLAGS) -fPIC -fno-common -Woverloaded-virtual -Wcast-qual -fno-strict-aliasing -pedantic -Wno-long-long -Wall -W -Wno-unused-parameter -Wwrite-strings -fno-exceptions -fno-rtti</string>
-			<key>HEADER_SEARCH_PATHS</key>
-			<string>@@CLANG_PLUGIN_PATH@@/llvm/include @@CLANG_PLUGIN_PATH@@/llvm/build/include @@CLANG_PLUGIN_PATH@@/clang/include/ @@CLANG_PLUGIN_PATH@@/llvm/build/tools/clang/include</string>
-			<key>OTHER_LDFLAGS</key>
-			<string>${LLVM_LIBS} ${CLANG_LIBS} -lpthread</string>
-		</dict>
+		<dict/>
 	</dict>
 </dict>
 </plist>

@@ -1694,6 +1694,7 @@
                 CommandLineFlag = "-arcmt-migrate-report-output";
                 // Category is hidden.
             },
+            /*
             {
                 Name = COM_SAVOYSOFTWARE_DETECT_WHITESPACE;
                 Type = Boolean;
@@ -1717,6 +1718,7 @@
                     NO = ();
                 };
             },
+            */
             {
                 Name = "GCC_ENABLE_EXCEPTIONS";
                 Type = Boolean;
