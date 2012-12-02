@@ -9,10 +9,8 @@ set (CLANG_LIBS
 	clangDriver
 	clangEdit
 	clangFrontendTool
-	clangIndex
 	clangLex
 	clangParse
-	clangRewrite
 	clangSema
 	clangSerialization
 	clangStaticAnalyzerCheckers

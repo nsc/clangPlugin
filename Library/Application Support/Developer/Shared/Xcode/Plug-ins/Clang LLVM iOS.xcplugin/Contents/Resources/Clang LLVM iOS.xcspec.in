@@ -1718,13 +1718,13 @@
                     NO = ();
                 };
             },
-            */
             {
                 Name = "GCC_ENABLE_EXCEPTIONS";
                 Type = Boolean;
                 DefaultValue = YES;
                 CommandLineFlag = "-fexceptions";
             },
+            */
             {
                 Name = "CLANG_LD_NO_IMPLICIT_DYLIBS";
                 Type = Boolean;
