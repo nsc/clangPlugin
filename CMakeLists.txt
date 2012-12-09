@@ -85,4 +85,5 @@ add_custom_target(XcodeTemplate
 )
 
 add_subdirectory(detectTrailingWS)
+add_subdirectory(testChecker)
 

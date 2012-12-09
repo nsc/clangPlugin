@@ -1718,6 +1718,29 @@
                 };
             },
             {
+                Name = COM_SAVOYSOFTWARE_ANALYZER_TEST;
+                Type = Boolean;
+                DefaultValue = YES;
+                Category = CheckerOptions;
+                CommandLineArgs = {
+                    YES = (
+                        "-Xclang",
+                        "-load",
+                        "-Xclang",
+                        "@@CLANG_PLUGIN_PATH@@/build/lib/TestChecker.dylib",
+                        "-Xclang",
+                        "-add-plugin",
+                        "-Xclang",
+                        "test-checker",
+                    );
+                    NO = ();
+                };
+                FileTypes = (
+                    "sourcecode.c.objc",
+                    "sourcecode.cpp.objcpp",
+                );
+            },
+            {
                 Name = "GCC_ENABLE_EXCEPTIONS";
                 Type = Boolean;
                 DefaultValue = YES;
@@ -1773,7 +1796,7 @@
             armv6,
             armv7,
         );
-        ExecPath = "$(CLANG)";
+        ExecPath = "@@CLANG_INSTALL_PATH@@";
         RuleName = "Analyze $(InputFile)";
         OutputDir = "$(TEMP_DIR)/StaticAnalyzer/$(CURRENT_VARIANT)/$(CURRENT_ARCH)";
         OutputFileExtension = plist;
@@ -1859,6 +1882,29 @@
                     NO = ();
                 };
                 // Category is hidden.
+            },
+            {
+                Name = COM_SAVOYSOFTWARE_ANALYZER_TEST;
+                Type = Boolean;
+                DefaultValue = YES;
+                Category = CheckerOptions;
+                CommandLineArgs = {
+                    YES = (
+                        "-Xclang",
+                        "-load",
+                        "-Xclang",
+                        "@@CLANG_PLUGIN_PATH@@/build/lib/TestChecker.dylib",
+                        "-Xclang",
+                        "-add-plugin",
+                        "-Xclang",
+                        "test-checker",
+                    );
+                    NO = ();
+                };
+                FileTypes = (
+                    "sourcecode.c.objc",
+                    "sourcecode.cpp.objcpp",
+                );
             },
         );
     },
