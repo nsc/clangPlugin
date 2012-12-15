@@ -5,9 +5,8 @@ git submodule update
 ln -s ../../clang llvm/tools/clang
 
 # build llvm & clang
-cd llvm
-mkdir build
-cd build
+mkdir build.lvvm
+cd build.lvvm
 CC=clang CXX=clang cmake -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo ..
 make
 cd ../..
@@ -21,3 +20,6 @@ make
 # build Xcode Template
 make XcodeTemplate
 rsync -av Library ~
+
+# To use the custom build clang as the Xcode analyzer
+sudo make xcode-analyzer

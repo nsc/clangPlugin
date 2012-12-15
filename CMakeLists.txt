@@ -7,7 +7,7 @@ set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 
 set (LLVM_SRC_DIR ${CLANG_PLUGIN_DIR}/llvm)
 set (CLANG_SRC_DIR ${LLVM_SRC_DIR}/tools/clang)
-set (LLVM_BUILD_DIR ${LLVM_SRC_DIR}/build)
+set (LLVM_BUILD_DIR ${CLANG_PLUGIN_DIR}/build.llvm)
 set (CLANG_BUILD_DIR ${LLVM_BUILD_DIR}/tools/clang)
 
 add_definitions (-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS)
@@ -81,6 +81,11 @@ add_custom_target(CopyARCLibraries
 
 add_custom_target(XcodeTemplate
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/copyTemplate -DCLANG_INSTALL_PATH=${LLVM_BUILD_DIR}/bin/clang -DCLANG_PLUGIN_PATH=${CLANG_PLUGIN_DIR} ${CMAKE_SOURCE_DIR}/Library .
+	DEPENDS CopyARCLibraries
+)
+
+add_custom_target(xcode-analyzer
+    COMMAND ${CLANG_SRC_DIR}/tools/scan-build/set-xcode-analyzer --use-checker-build="${LLVM_BUILD_DIR}/bin/clang"
 	DEPENDS CopyARCLibraries
 )
 

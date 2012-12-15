@@ -1,2 +1,4 @@
 build
+build.llvm
 xcode
+xcode.llvm
