@@ -113,13 +113,13 @@
 		<dict>
 			<key>Beginning</key>
 			<string>CLANG_PLUGIN_PATH = @@CLANG_PLUGIN_PATH@@
-HEADER_SEARCH_PATHS = ${CLANG_PLUGIN_PATH}/llvm/include ${CLANG_PLUGIN_PATH}/llvm/build/include ${CLANG_PLUGIN_PATH}/clang/include/ ${CLANG_PLUGIN_PATH}/llvm/build/tools/clang/include
+HEADER_SEARCH_PATHS = ${CLANG_PLUGIN_PATH}/llvm/include ${CLANG_PLUGIN_PATH}/build.llvm/include ${CLANG_PLUGIN_PATH}/clang/include/ ${CLANG_PLUGIN_PATH}/build.llvm/tools/clang/include
 
 GCC_PREPROCESSOR_DEFINITIONS = __STDC_LIMIT_MACROS __STDC_CONSTANT_MACROS $(inherited)
 
-LIBRARY_SEARCH_PATHS = ${CLANG_PLUGIN_PATH}/llvm/build/lib
+LIBRARY_SEARCH_PATHS = ${CLANG_PLUGIN_PATH}/build.llvm/lib
 
-CLANG_LIBS =  -lclangFrontend -lclangAST -lclangAnalysis -lclangBasic -lclangCodeGen -lclangDriver -lclangEdit -lclangFrontendTool -lclangIndex -lclangLex -lclangParse -lclangRewrite -lclangSema -lclangSerialization -lclangStaticAnalyzerCheckers -lclangStaticAnalyzerCore -lclangStaticAnalyzerFrontend
+CLANG_LIBS =  -lclangFrontend -lclangAST -lclangAnalysis -lclangBasic -lclangCodeGen -lclangDriver -lclangEdit -lclangFrontendTool -lclangLex -lclangParse -lclangSema -lclangSerialization -lclangStaticAnalyzerCheckers -lclangStaticAnalyzerCore -lclangStaticAnalyzerFrontend
 
 LLVM_LIBS = -lLLVMJIT -lLLVMX86CodeGen -lLLVMX86AsmParser -lLLVMX86Disassembler -lLLVMExecutionEngine -lLLVMAsmPrinter -lLLVMSelectionDAG -lLLVMX86AsmPrinter -lLLVMX86Info -lLLVMMCParser -lLLVMCodeGen -lLLVMX86Utils -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMCore -lLLVMMC -lLLVMSupport
 

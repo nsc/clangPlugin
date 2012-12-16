@@ -7,14 +7,14 @@ ln -s ../../clang llvm/tools/clang
 # build llvm & clang
 mkdir build.lvvm
 cd build.lvvm
-CC=clang CXX=clang cmake -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo ..
+CC=clang CXX="clang++ -stdlib=libc++ -std=c++11" cmake -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo ..
 make
 cd ../..
 
 # build clangPlugin
 mkdir build
 cd build
-cmake -DCLANG_PLUGIN_DIR=`pwd`/.. ..
+CC=clang CXX="clang++ -stdlib=libc++ -std=c++11" cmake -DCLANG_PLUGIN_DIR=`pwd`/.. ..
 make
 
 # build Xcode Template
