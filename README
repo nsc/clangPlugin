@@ -5,16 +5,16 @@ git submodule update
 ln -s ../../clang llvm/tools/clang
 
 # build llvm & clang
-mkdir build.lvvm
-cd build.lvvm
-CC=clang CXX="clang++ -stdlib=libc++ -std=c++11" cmake -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo ..
+mkdir build.llvm
+cd build.llvm
+cmake -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo ../llvm
 make
-cd ../..
+cd ..
 
 # build clangPlugin
 mkdir build
 cd build
-CC=clang CXX="clang++ -stdlib=libc++ -std=c++11" cmake -DCLANG_PLUGIN_DIR=`pwd`/.. ..
+cmake -DCLANG_PLUGIN_DIR=`pwd`/.. ..
 make
 
 # build Xcode Template
